@@ -1,4 +1,5 @@
+--upgrade pip
 openai 
 streamlit
 pandas
-python3 -m venv env
+
