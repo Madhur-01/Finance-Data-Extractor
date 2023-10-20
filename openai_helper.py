@@ -1,3 +1,8 @@
+import subprocess
+
+# Run pip install command
+subprocess.run(['pip', 'install', 'openai'])
+
 import openai
 from secret_key import openai_key
 import json
