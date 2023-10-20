@@ -1,4 +1,4 @@
-openai = 0.26.4
+openai
 streamlit
 pandas
 
