@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import openai_helper
+
 col1, col2 = st.columns([3,2])
 
 financial_data_df = pd.DataFrame({
