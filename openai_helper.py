@@ -1,8 +1,10 @@
 import openai
+from secret_key import openai_key
 import json
 import pandas as pd
 
-openai_key = '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'
+openai.api_key = openai_key
+
 
 def extract_financial_data(text):
     prompt = get_financial_prompt() + text
