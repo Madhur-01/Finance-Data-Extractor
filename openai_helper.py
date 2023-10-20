@@ -6,10 +6,10 @@ import pandas as pd
 openai.api_key = openai_key
 
 def extract_financial_data(text):
-    prompt = get_financial_prompt() + text
+    prompt = get_prompt_financial() + text
     response = openai.ChatCompletion.create(
-        model = "gpt-3.5-turbo",
-        message = [{"role":"user","content":prompt}]
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user","content": prompt}]
     )
     content = response.choices[0]['message']['content']
 
@@ -19,11 +19,15 @@ def extract_financial_data(text):
 
     except (json.JSONDecodeError, IndexError):
         pass
+
     return pd.DataFrame({
         "Measure": ["Company Name", "Stock Symbol", "Revenue", "Net Income", "EPS"],
         "Value": ["", "", "", "", ""]
     })
-def get_financial_prompt():
+
+
+
+def get_prompt_financial():
     return '''Please retrieve company name, revenue, net income and earnings per share (a.k.a. EPS)
     from the following news article. If you can't find the information from this article 
     then return "". Do not make things up.    
@@ -41,3 +45,12 @@ def get_financial_prompt():
     ============
 
     '''
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    text = '''
+    Tesla's Earning news in text format: Tesla's earning this quarter blew all the estimates. They reported 4.5 billion $ profit against a revenue of 30 billion $. Their earnings per share was 2.3 $
+    '''
+    df = extract_financial_data(text)
+
+    print(df.to_string())
