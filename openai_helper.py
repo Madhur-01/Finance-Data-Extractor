@@ -1,4 +1,4 @@
-!pip install openai
+pip install openai
 import openai
 from secret_key import openai_key
 import json
